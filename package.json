@@ -1,0 +1,16 @@
+{
+  "name": "es6",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server -e js,hbs"
+  },
+  "author": "nk",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.3",
+    "hbs": "^4.0.1",
+    "nodemon": "^1.18.4"
+  }
+}
