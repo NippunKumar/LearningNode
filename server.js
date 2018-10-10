@@ -1,8 +1,24 @@
 const express = require('express');
 const hbs = require('hbs');
 let app = express();
+const fs = require('fs')
 
 app.set('view engine','hbs');
+
+app.use((req,res,next)=>{
+    let now = new Date().toString()
+    let logVal = `${now} : ${req.method} : ${req.url}`
+    console.log( logVal)
+    fs.appendFile('server.log',logVal +'\n',(err)=>{
+        if(err){
+            console.log("--unable to append the file--")
+        }
+    })
+    next();
+})
+/* app.use((req,res,next)=>{
+    res.render('maintenance.hbs')
+}) */
 app.use(express.static(__dirname + "/public"));
 hbs.registerPartials(__dirname + "/views/partials");
 hbs.registerHelper('getCurrentYear',()=>{
@@ -33,6 +49,6 @@ app.get('/bad', (req, res) => {
     });
 });
 
-app.listen(3000,() => {
-    console.log("App starts at port 3000")
+app.listen(4000,() => {
+    console.log("App starts at port 4000")
 });
